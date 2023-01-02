@@ -17,8 +17,8 @@ public class TestGridFunc {
 
     @BeforeEach
     public void init(){
-        grid2 = initSizeN(2);
-        grid3 = initSizeN(3);
+        grid2 = GenTestGrid.genGrid(2);
+        grid3 = GenTestGrid.genGrid(3);
     }
 
     @Test
@@ -113,19 +113,6 @@ public class TestGridFunc {
             }
         }
         return true;
-    }
-
-    private List<List<Integer>> initSizeN(int n){
-        List<List<Integer>> grid = new ArrayList<>();
-        for (int i = 0; i < n; i++){
-            List<Integer> row = new ArrayList<>();
-            for (int j = 0; j < n; j++){
-                row.add(0);
-            }
-            grid.add(row);
-        }
-
-        return grid;
     }
 
     private <T> boolean inBounds(List<List<T>> m , Point2D p){
