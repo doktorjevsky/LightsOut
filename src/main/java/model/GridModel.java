@@ -18,7 +18,7 @@ public class GridModel implements Observable {
 
     /**
      * Requires: Reach is a non-negative integer, grid is a solvable grid that is not yet solved
-     * Ensures: A player may solve the game only by applying the GridFunc on the grid
+     * Ensures: By only using GridFunc, it is possible to transform the grid to a grid only containing zeroes
      * */
 
     public GridModel(int reach, List<List<Integer>> grid){
@@ -35,6 +35,7 @@ public class GridModel implements Observable {
      * */
     public void toggleCell(int x, int y){
         grid = f.apply(grid, x, y);
+        notifyObservers();
     }
 
     /**

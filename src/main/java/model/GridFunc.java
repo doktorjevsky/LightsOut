@@ -20,9 +20,11 @@ public class GridFunc {
      *          that are at most at a distance "reach" away from p in the two directions
      *          All other elements are not modified
      *          The resulting matrix will have the same dimensions
+     *          The input is not mutated
      * @param grid n*m matrix of integers
      * @param p point within the bounds of the matrix
-     * @return n*m matrix with elements on row p.y and column p.x of input grid XORed by 1
+     * @return n*m matrix with elements on row p.y and column p.x within range "reach" in either
+     *         direction of input grid XORed by 1
      */
 
     public List<List<Integer>> apply(List<List<Integer>> grid, Point2D p){
