@@ -5,9 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import model.GameFacade;
+import model.modelInterfaces.Observer;
 
 
-public class GameController {
+public class GameController implements Observer {
 
     @FXML
     private ChoiceBox levelChoice;
@@ -19,4 +20,8 @@ public class GameController {
     private GameFacade facade;
 
 
+    @Override
+    public void update() {
+
+    }
 }

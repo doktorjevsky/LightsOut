@@ -8,7 +8,7 @@ public class RandomModelFactory {
 
     /**
      * Requires: reach and size are positive integers
-     * Ensures: the resulting GridModel is randomly initialized and solvable
+     * Ensures: the resulting GridModel is solvable and not already solved
      * */
     public static GridModel buildModel(int reach, int size){
         GridModel model = new GridModel(reach, initGrid(size));
