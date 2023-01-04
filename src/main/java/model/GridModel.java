@@ -37,6 +37,10 @@ public class GridModel {
         grid = f.apply(grid, x, y);
     }
 
+    public void toggleCell(Point2D p){
+        grid = f.apply(grid, p);
+    }
+
     /**
      * @return true if all entries in grid are 0, else false
      * */

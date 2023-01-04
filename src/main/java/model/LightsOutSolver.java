@@ -17,8 +17,8 @@ public class LightsOutSolver {
         }
         List<List<Integer>> solved = solver.solveSystem(augM);
         List<Point2D> solution = new ArrayList<>();
-        for (int i = 0; i < m.size() * m.size(); i++){
-            if (m.get(i / m.size()).get(i % m.size()) == 1){
+        for (int i = 0; i < solved.size(); i++){
+            if (solved.get(i).get(solved.get(0).size() - 1) == 1){
                 solution.add(new Point2D(i % m.size(), i / m.size()));
             }
         }
