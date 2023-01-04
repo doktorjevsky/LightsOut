@@ -1,14 +1,15 @@
 package controllers;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
 
@@ -39,6 +40,7 @@ public class GameController implements Observer {
         Platform.runLater(() -> {
             initChoiceBox();
             update();
+            initListeners();
         });
 
     }
@@ -47,6 +49,18 @@ public class GameController implements Observer {
     public void update() {
         paint();
     }
+
+    public void changeLevel(ActionEvent event){
+        int level = levelChoice.getValue();
+        facade.newGame(level, level);
+    }
+
+    public void toggleCell(int x, int y){
+        facade.toggleCell(x, y);
+    }
+
+
+    // PRIVATE METHODS
 
     private void paint(){
         gridView.getChildren().clear();
@@ -68,16 +82,25 @@ public class GameController implements Observer {
         }
         gridView.setHgap(0);
         gridView.setVgap(0);
-    }
-
-    public void changeLevel(ActionEvent event){
-        int level = levelChoice.getValue();
-        facade.newGame(level, level);
+        initListeners();
     }
 
     private void initChoiceBox(){
         List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10);
         levelChoice.getItems().addAll(lvls);
         levelChoice.setOnAction(this::changeLevel);
+    }
+
+    private void initListeners(){
+        gridView.getChildren().forEach(item -> {
+            item.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    int x = GridPane.getColumnIndex(item);
+                    int y = GridPane.getRowIndex(item);
+                    toggleCell(x, y);
+                }
+            });
+        });
     }
 }
