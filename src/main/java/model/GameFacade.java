@@ -15,6 +15,10 @@ public class GameFacade implements Observable {
         model = RandomModelFactory.buildModel(2, 2);
     }
 
+    public List<List<Integer>> getGrid(){
+        return model.getGrid();
+    }
+
     public void toggleCell(int x, int y){
         model.toggleCell(x, y);
         notifyObservers();
