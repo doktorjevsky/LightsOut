@@ -1,11 +1,14 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
 
@@ -15,7 +18,7 @@ import java.util.List;
 public class GameController implements Observer {
 
     @FXML
-    private ChoiceBox levelChoice;
+    private ChoiceBox<Integer> levelChoice;
     @FXML
     private GridPane gridView;
     @FXML
@@ -32,8 +35,12 @@ public class GameController implements Observer {
         facade.addObserver(this);
     }
 
-    public void initialize(){
-        Platform.runLater(this::update);
+    public void initialize() {
+        Platform.runLater(() -> {
+            initChoiceBox();
+            update();
+        });
+
     }
 
     @Override
@@ -61,5 +68,16 @@ public class GameController implements Observer {
         }
         gridView.setHgap(0);
         gridView.setVgap(0);
+    }
+
+    public void changeLevel(ActionEvent event){
+        int level = levelChoice.getValue();
+        facade.newGame(level, level);
+    }
+
+    private void initChoiceBox(){
+        List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10);
+        levelChoice.getItems().addAll(lvls);
+        levelChoice.setOnAction(this::changeLevel);
     }
 }

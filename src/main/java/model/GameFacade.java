@@ -26,10 +26,12 @@ public class GameFacade implements Observable {
 
     public void newGame(){
         model = RandomModelFactory.buildModel(2, 2);
+        notifyObservers();
     }
 
     public void newGame(int reach, int size){
         model = RandomModelFactory.buildModel(reach, size);
+        notifyObservers();
     }
 
     public boolean lightsAreOut(){
