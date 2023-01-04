@@ -19,7 +19,7 @@
    <right>
       <VBox fx:id="vBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button lineSpacing="10.0" mnemonicParsing="false" text="Main Menu" />
+            <Button fx:id="mainMenuButton" lineSpacing="10.0" mnemonicParsing="false" text="Main Menu" />
             <Button mnemonicParsing="false" text="Solve" />
             <ChoiceBox fx:id="levelChoice" prefWidth="150.0" />
          </children>

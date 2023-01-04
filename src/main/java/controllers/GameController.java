@@ -4,15 +4,20 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -24,6 +29,8 @@ public class GameController implements Observer {
     private GridPane gridView;
     @FXML
     private Scene gameScene;
+    @FXML
+    private Button mainMenuButton;
 
     private GameFacade facade;
 
@@ -41,6 +48,7 @@ public class GameController implements Observer {
             initChoiceBox();
             update();
             initListeners();
+            initMenuButton();
         });
 
     }
@@ -50,17 +58,36 @@ public class GameController implements Observer {
         paint();
     }
 
-    public void changeLevel(ActionEvent event){
+    private void toggleCell(int x, int y){
+        facade.toggleCell(x, y);
+    }
+
+    // BUTTON HANDLERS
+
+    private void changeLevel(ActionEvent event){
         int level = levelChoice.getValue();
         facade.newGame(level, level);
     }
 
-    public void toggleCell(int x, int y){
-        facade.toggleCell(x, y);
+    private void mainMenuButtonHandler(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/mainMenuView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            facade.removeObserver(this);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
-    // PRIVATE METHODS
+
+
+
+    // INIT AND PAINTING METHODS
 
     private void paint(){
         gridView.getChildren().clear();
@@ -103,4 +130,9 @@ public class GameController implements Observer {
             });
         });
     }
+
+    private void initMenuButton(){
+        mainMenuButton.setOnAction(this::mainMenuButtonHandler);
+    }
+
 }
