@@ -23,6 +23,9 @@ public class GameController implements Observer {
 
     private GameFacade facade;
 
+    private final double DIMENSION = 350;
+
+
 
     public GameController(GameFacade facade){
         this.facade = facade;
@@ -40,6 +43,8 @@ public class GameController implements Observer {
 
     private void paint(){
         gridView.getChildren().clear();
+        gridView.setPrefSize(DIMENSION, DIMENSION);
+        gridView.setGridLinesVisible(true);
         List<List<Integer>> grid = facade.getGrid();
         for (int y = 0; y < grid.size(); y++){
             for (int x = 0; x < grid.get(0).size(); x++){
@@ -49,8 +54,12 @@ public class GameController implements Observer {
                 } else {
                     img = new ImageView("lamps/lightoff.png");
                 }
+                img.setFitWidth(DIMENSION / (double) grid.get(0).size());
+                img.setFitHeight(DIMENSION / (double) grid.size());
                 gridView.add(img, x, y);
             }
         }
+        gridView.setHgap(0);
+        gridView.setVgap(0);
     }
 }
