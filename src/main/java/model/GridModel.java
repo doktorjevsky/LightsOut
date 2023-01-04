@@ -70,4 +70,6 @@ public class GridModel {
 
     public GridFunc getFunction(){ return f; }
 
+    public int getReach(){ return f.getReach(); }
+
 }

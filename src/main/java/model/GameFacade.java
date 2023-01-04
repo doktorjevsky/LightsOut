@@ -1,11 +1,17 @@
 package model;
 
+import controllers.commands.ICommand;
+import controllers.commands.RunSolutionCommand;
 import model.modelInterfaces.Observable;
 import model.modelInterfaces.Observer;
 import model.staticHelpers.RandomModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * A class that function as a simple interface between the controller and the model itself
+ * */
 
 public class GameFacade implements Observable {
 
@@ -25,6 +31,11 @@ public class GameFacade implements Observable {
         notifyObservers();
     }
 
+    public void toggleCell(Point2D p){
+        model.toggleCell(p);
+        notifyObservers();
+    }
+
     public void newGame(){
         model = RandomModelFactory.buildModel(2, 2);
         notifyObservers();
@@ -34,6 +45,13 @@ public class GameFacade implements Observable {
         model = RandomModelFactory.buildModel(reach, size);
         notifyObservers();
     }
+
+    public void solveGrid(){
+        ICommand c = new RunSolutionCommand(this);
+        c.apply();
+    }
+
+    public int getReach(){ return model.getReach(); }
 
     public boolean lightsAreOut(){
         return model.lightsAreOut();

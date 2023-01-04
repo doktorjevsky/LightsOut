@@ -7,19 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameWonModalController">
    <scene>
       <Scene>
          <root>
-            <AnchorPane prefHeight="400.0" prefWidth="600.0">
+            <AnchorPane prefHeight="161.0" prefWidth="471.0">
                <children>
-                  <Label layoutX="140.0" layoutY="171.0" text="Lights are out!" textFill="#e4360b">
+                  <Label layoutX="76.0" layoutY="52.0" text="Lights are out!" textFill="#e4360b">
                      <font>
                         <Font name="Bauhaus 93" size="51.0" />
                      </font>
                   </Label>
-                  <Button onAction="#closeModalHandler" layoutX="272.0" layoutY="229.0" mnemonicParsing="false" text="Close" />
+                  <Button layoutX="211.0" layoutY="110.0" mnemonicParsing="false" onAction="#closeModalHandler" text="Close" />
                </children>
             </AnchorPane>
          </root>

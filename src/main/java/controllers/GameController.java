@@ -34,6 +34,8 @@ public class GameController implements Observer {
     private Scene gameScene;
     @FXML
     private Button mainMenuButton;
+    @FXML
+    private Button solveButton;
 
     private Stage mainStage;
 
@@ -55,6 +57,7 @@ public class GameController implements Observer {
             update();
             initListeners();
             initMenuButton();
+            initSolveButton();
         });
 
     }
@@ -103,6 +106,10 @@ public class GameController implements Observer {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private void solve(ActionEvent event){
+        facade.solveGrid();
     }
 
 
@@ -170,6 +177,10 @@ public class GameController implements Observer {
 
     private void initMenuButton(){
         mainMenuButton.setOnAction(this::mainMenuButtonHandler);
+    }
+
+    private void initSolveButton(){
+        solveButton.setOnAction(this::solve);
     }
 
 }
