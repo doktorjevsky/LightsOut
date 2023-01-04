@@ -13,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
@@ -32,14 +33,17 @@ public class GameController implements Observer {
     @FXML
     private Button mainMenuButton;
 
+    private Stage mainStage;
+
     private GameFacade facade;
 
     private final double DIMENSION = 350;
 
 
 
-    public GameController(GameFacade facade){
+    public GameController(GameFacade facade, Stage stage){
         this.facade = facade;
+        mainStage = stage;
         facade.addObserver(this);
     }
 
@@ -56,6 +60,13 @@ public class GameController implements Observer {
     @Override
     public void update() {
         paint();
+        if (facade.lightsAreOut()){
+            openGameWonDialog();
+        }
+    }
+
+    public void restart(){
+        changeLevel();
     }
 
     private void toggleCell(int x, int y){
@@ -67,6 +78,15 @@ public class GameController implements Observer {
     private void changeLevel(ActionEvent event){
         int level = levelChoice.getValue();
         facade.newGame(level, level);
+    }
+
+    private void changeLevel(){
+        Integer level = levelChoice.getValue();
+        if (level != null) {
+            facade.newGame(level, level);
+        } else {
+            facade.newGame(2, 2);
+        }
     }
 
     private void mainMenuButtonHandler(ActionEvent event) {
@@ -85,9 +105,23 @@ public class GameController implements Observer {
 
 
 
-
-
     // INIT AND PAINTING METHODS
+
+    private void openGameWonDialog(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/gameWonModal.fxml"));
+            Stage stage = loader.load();
+            GameWonModalController controller = loader.getController();
+            controller.setGameController(this);
+            stage.setTitle("Game won");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(mainStage);
+            stage.show();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     private void paint(){
         gridView.getChildren().clear();
