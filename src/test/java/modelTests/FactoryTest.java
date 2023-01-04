@@ -1,7 +1,7 @@
 package modelTests;
 
 import model.GridModel;
-import model.RandomModelFactory;
+import model.staticHelpers.RandomModelFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +64,8 @@ public class FactoryTest {
         }
         return sum;
     }
+
+
 
 
 }

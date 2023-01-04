@@ -1,4 +1,6 @@
-package model;
+package model.staticHelpers;
+
+import model.GridModel;
 
 import java.util.*;
 

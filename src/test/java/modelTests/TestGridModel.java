@@ -1,5 +1,6 @@
 package modelTests;
 
+import model.staticHelpers.GenTestGrid;
 import model.GridModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

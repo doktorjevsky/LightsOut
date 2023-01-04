@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
 
@@ -116,6 +118,7 @@ public class GameController implements Observer {
             stage.setTitle("Game won");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(mainStage);
+            stage.setOnCloseRequest(Event::consume);
             stage.show();
 
         } catch (IOException e){

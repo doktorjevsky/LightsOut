@@ -1,4 +1,4 @@
-package modelTests;
+package model.staticHelpers;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,7 +10,7 @@ import java.util.List;
  * The main class for modelling the game.
  * */
 
-public class GridModel implements Observable {
+public class GridModel {
 
     private List<List<Integer>> grid;
     private List<Observer> observers = new ArrayList<>();
@@ -35,7 +35,6 @@ public class GridModel implements Observable {
      * */
     public void toggleCell(int x, int y){
         grid = f.apply(grid, x, y);
-        notifyObservers();
     }
 
     /**
@@ -67,25 +66,4 @@ public class GridModel implements Observable {
 
     public GridFunc getFunction(){ return f; }
 
-    @Override
-    public void addObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void removeObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void removeAll() {
-        observers = new ArrayList<>();
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
-        }
-    }
 }

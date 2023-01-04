@@ -1,5 +1,6 @@
 package modelTests;
 
+import model.staticHelpers.GenTestGrid;
 import model.GridFunc;
 import model.Point2D;
 import org.junit.jupiter.api.Assertions;

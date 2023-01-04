@@ -2,6 +2,7 @@ package model;
 
 import model.modelInterfaces.Observable;
 import model.modelInterfaces.Observer;
+import model.staticHelpers.RandomModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
