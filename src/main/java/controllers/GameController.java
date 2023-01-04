@@ -37,11 +37,13 @@ public class GameController implements Observer {
     @FXML
     private Button solveButton;
 
-    private Stage mainStage;
+    private final Stage mainStage;
 
-    private GameFacade facade;
+    private final GameFacade facade;
 
-    private final double DIMENSION = 350;
+    private final double DIMENSION = 500;
+
+    private boolean clickableGrid = true;
 
 
 
@@ -54,10 +56,10 @@ public class GameController implements Observer {
     public void initialize() {
         Platform.runLater(() -> {
             initChoiceBox();
-            update();
             initListeners();
             initMenuButton();
             initSolveButton();
+            update();
         });
 
     }
@@ -81,17 +83,21 @@ public class GameController implements Observer {
     // BUTTON HANDLERS
 
     private void changeLevel(ActionEvent event){
+        clickableGrid = true;
         int level = levelChoice.getValue();
         facade.newGame(level, level);
+
     }
 
     private void changeLevel(){
         Integer level = levelChoice.getValue();
+        clickableGrid = true;
         if (level != null) {
             facade.newGame(level, level);
         } else {
             facade.newGame(2, 2);
         }
+
     }
 
     private void mainMenuButtonHandler(ActionEvent event) {
@@ -109,6 +115,7 @@ public class GameController implements Observer {
     }
 
     private void solve(ActionEvent event){
+        clickableGrid = false;
         facade.solveGrid();
     }
 
@@ -135,9 +142,11 @@ public class GameController implements Observer {
 
     private void paint(){
         gridView.getChildren().clear();
-        gridView.setPrefSize(DIMENSION, DIMENSION);
         gridView.setGridLinesVisible(true);
         List<List<Integer>> grid = facade.getGrid();
+        double d = Math.max(32 * (double) grid.size(), 300);
+        d = Math.min(d, 32 * (double) grid.size());
+        gridView.setPrefSize(d, d);
         for (int y = 0; y < grid.size(); y++){
             for (int x = 0; x < grid.get(0).size(); x++){
                 ImageView img;
@@ -146,18 +155,20 @@ public class GameController implements Observer {
                 } else {
                     img = new ImageView("lamps/lightoff.png");
                 }
-                img.setFitWidth(DIMENSION / (double) grid.get(0).size());
-                img.setFitHeight(DIMENSION / (double) grid.size());
+                img.setFitWidth(d / (double) grid.get(0).size());
+                img.setFitHeight(d / (double) grid.size());
                 gridView.add(img, x, y);
             }
         }
         gridView.setHgap(0);
         gridView.setVgap(0);
-        initListeners();
+        if (clickableGrid){
+            initListeners();
+        }
     }
 
     private void initChoiceBox(){
-        List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20);
         levelChoice.getItems().addAll(lvls);
         levelChoice.setOnAction(this::changeLevel);
     }

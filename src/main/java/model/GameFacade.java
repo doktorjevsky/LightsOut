@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that function as a simple interface between the controller and the model itself
+ * A class that functions as a simple interface between the controller and the model itself
  * */
 
 public class GameFacade implements Observable {
