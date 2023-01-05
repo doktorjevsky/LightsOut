@@ -22,6 +22,7 @@ import model.modelInterfaces.Observer;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 
 public class GameController implements Observer {
@@ -44,7 +45,6 @@ public class GameController implements Observer {
     private final double DIMENSION = 500;
 
     private boolean clickableGrid = true;
-
 
 
     public GameController(GameFacade facade, Stage stage){
@@ -144,8 +144,7 @@ public class GameController implements Observer {
         gridView.getChildren().clear();
         gridView.setGridLinesVisible(true);
         List<List<Integer>> grid = facade.getGrid();
-        double d = Math.max(32 * (double) grid.size(), 300);
-        d = Math.min(d, 32 * (double) grid.size());
+        double d = 32 * grid.size();
         gridView.setPrefSize(d, d);
         for (int y = 0; y < grid.size(); y++){
             for (int x = 0; x < grid.get(0).size(); x++){
@@ -168,7 +167,7 @@ public class GameController implements Observer {
     }
 
     private void initChoiceBox(){
-        List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20);
+        List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17);
         levelChoice.getItems().addAll(lvls);
         levelChoice.setOnAction(this::changeLevel);
     }
@@ -181,6 +180,7 @@ public class GameController implements Observer {
                     int x = GridPane.getColumnIndex(item);
                     int y = GridPane.getRowIndex(item);
                     toggleCell(x, y);
+
                 }
             });
         });
