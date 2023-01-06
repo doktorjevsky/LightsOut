@@ -8,11 +8,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class TestSolver {
 
     private final LightsOutSolver solver = new LightsOutSolver();
+    private final Random rd = new Random();
 
 
     @Test
@@ -24,6 +26,18 @@ public class TestSolver {
             Assertions.assertTrue(result);
         }
 
+    }
+
+    @Test
+    public void testSolverRandomSize(){
+        for (int i = 0; i < 200; i++){
+            int size = rd.nextInt(20) + 2;
+            int reach = size;
+            GridModel model = RandomModelFactory.buildModel(reach, size);
+            List<Point2D> solution = solver.solveGrid(model.getGrid(), reach);
+            boolean result = isSolution(model, solution);
+            Assertions.assertTrue(result);
+        }
     }
 
     private boolean isSolution(GridModel model, List<Point2D> solution){
