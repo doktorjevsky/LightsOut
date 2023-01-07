@@ -1,14 +1,26 @@
 package model;
 
-import model.modelInterfaces.LinearEquationSolver;
 import model.staticHelpers.AdjacencyMatrixFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that solves a grid
+ * */
+
 public class LightsOutSolver {
 
-    private LinearEquationSolver<Integer> solver = new EquationSolverModTwo();
+    private final EquationSolverModTwo solver = new EquationSolverModTwo();
+
+    /**
+     * Requires: the grid m has been modified by a GridFunc of reach "reach"
+     * Ensures: a list of points that solves the grid
+     *
+     * @param m the lights out grid to be solved
+     * @param reach the reach of the function that has modified the grid
+     * @return a List of positions of lights in the grid to click to solve the grid
+     * */
 
     public List<Point2D> solveGrid(List<List<Integer>> m, int reach){
         List<List<Integer>> augM = AdjacencyMatrixFactory.getAdjacencyMatrix(m.size(), reach);

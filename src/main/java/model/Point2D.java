@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * A basic class for storing a 2D point
+ * */
 public class Point2D {
 
     private int x;

@@ -1,6 +1,5 @@
 package model;
 
-import model.modelInterfaces.Observable;
 import model.modelInterfaces.Observer;
 
 import java.util.ArrayList;
@@ -68,7 +67,6 @@ public class GridModel {
         return out;
     }
 
-    public GridFunc getFunction(){ return f; }
 
     public int getReach(){ return f.getReach(); }
 

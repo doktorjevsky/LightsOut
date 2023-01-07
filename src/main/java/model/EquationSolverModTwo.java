@@ -1,12 +1,10 @@
 package model;
 
-import model.modelInterfaces.LinearEquationSolver;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class EquationSolverModTwo implements LinearEquationSolver<Integer> {
+public class EquationSolverModTwo {
 
     private Comparator<List<Integer>> comp = new Comparator<List<Integer>>() {
         @Override
@@ -22,7 +20,6 @@ public class EquationSolverModTwo implements LinearEquationSolver<Integer> {
         }
     };
 
-    @Override
     public List<List<Integer>> solveSystem(List<List<Integer>> augMatrix) {
         List<List<Integer>> mCopy = copyMatrix(augMatrix);
         mCopy.sort(comp);

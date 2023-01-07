@@ -3,6 +3,13 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The GridFunc is a class that flicks lights in the grid
+ * By flicking the light at position p, the GridFunc will
+ * flick the light at p and its adjacent lights in its row and
+ * column that are at a distant at most "reach" away.
+ * */
+
 public class GridFunc {
 
     private final int reach;
@@ -21,6 +28,7 @@ public class GridFunc {
      *          All other elements are not modified
      *          The resulting matrix will have the same dimensions
      *          The input is not mutated
+     *
      * @param grid n*m matrix of integers
      * @param p point within the bounds of the matrix
      * @return n*m matrix with elements on row p.y and column p.x within range "reach" in either
