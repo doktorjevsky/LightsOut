@@ -40,6 +40,18 @@ public class TestSolver {
         }
     }
 
+    @Test
+    public void testSolverNormal(){
+        for (int i = 0; i < 200; i++){
+            int size = rd.nextInt(20) + 2;
+            int reach = 1;
+            GridModel model = RandomModelFactory.buildModel(reach, size);
+            List<Point2D> solution = solver.solveGrid(model.getGrid(), reach);
+            boolean result = isSolution(model, solution);
+            Assertions.assertTrue(result);
+        }
+    }
+
     private boolean isSolution(GridModel model, List<Point2D> solution){
         for (Point2D p : solution){
             model.toggleCell(p);

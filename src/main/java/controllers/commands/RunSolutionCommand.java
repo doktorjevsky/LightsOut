@@ -48,7 +48,7 @@ public class RunSolutionCommand implements ICommand{
                 });
 
             }
-        }, 100, 800);
+        }, 0, 300);
 
 
     }

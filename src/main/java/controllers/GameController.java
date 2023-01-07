@@ -16,13 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.GameFacade;
 import model.modelInterfaces.Observer;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+
 
 
 public class GameController implements Observer {
@@ -37,6 +36,8 @@ public class GameController implements Observer {
     private Button mainMenuButton;
     @FXML
     private Button solveButton;
+    @FXML
+    private ChoiceBox<String> gameTypeBox;
 
     private final Stage mainStage;
 
@@ -59,6 +60,7 @@ public class GameController implements Observer {
             initListeners();
             initMenuButton();
             initSolveButton();
+            initGameTypeBox();
             update();
         });
 
@@ -73,7 +75,7 @@ public class GameController implements Observer {
     }
 
     public void restart(){
-        changeLevel();
+        newGame();
     }
 
     private void toggleCell(int x, int y){
@@ -83,22 +85,18 @@ public class GameController implements Observer {
     // BUTTON HANDLERS
 
     private void changeLevel(ActionEvent event){
-        clickableGrid = true;
-        int level = levelChoice.getValue();
-        facade.newGame(level, level);
-
+        newGame();
     }
 
-    private void changeLevel(){
-        Integer level = levelChoice.getValue();
-        clickableGrid = true;
-        if (level != null) {
-            facade.newGame(level, level);
-        } else {
-            facade.newGame(2, 2);
-        }
 
+    private void newGame(){
+        clickableGrid = true;
+        int lvl = levelChoice.getValue();
+        int reach = gameTypeBox.getValue().equals("Regular") ? 1 : lvl;
+        facade.newGame(reach, lvl);
     }
+
+
 
     private void mainMenuButtonHandler(ActionEvent event) {
         try {
@@ -169,7 +167,17 @@ public class GameController implements Observer {
     private void initChoiceBox(){
         List<Integer> lvls = List.of(2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17);
         levelChoice.getItems().addAll(lvls);
+        levelChoice.setValue(2);
         levelChoice.setOnAction(this::changeLevel);
+    }
+
+    private void initGameTypeBox(){
+        List<String> types = List.of("Regular", "Unlimited");
+        gameTypeBox.setValue("Regular");
+        gameTypeBox.getItems().addAll(types);
+        gameTypeBox.setOnAction(this::changeLevel);
+
+
     }
 
     private void initListeners(){

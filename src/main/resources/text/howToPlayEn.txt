@@ -1,0 +1,23 @@
+Welcome to Lights Out!
+
+The game takes place on a n*n grid of lights,
+where a light is either on or off.
+
+If you flick a light that is on, you'll turn it
+off - and vice versa.
+
+The flicking of a light does not only affect the
+light itself, but also its adjacent lights.
+
+REGULAR MODE:
+If you play in the regular mode, only the lights
+(not counting in the diagonal directions) directly
+adjacent to the flicked light are regarded as adjacent.
+
+UNLIMITED MODE:
+In the unlimited mode, all lights on the same row or
+column as a flicked light are regarded as adjacent lights.
+
+GOAL OF THE GAME
+The goal of the game is to flick the lights until all lights
+are off! Good luck!
