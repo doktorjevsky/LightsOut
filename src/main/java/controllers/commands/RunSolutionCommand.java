@@ -2,7 +2,7 @@ package controllers.commands;
 
 import javafx.application.Platform;
 import model.GameFacade;
-import model.LightsOutSolver;
+import model.gameSolver.LightsOutSolver;
 import model.Point2D;
 
 import java.util.List;

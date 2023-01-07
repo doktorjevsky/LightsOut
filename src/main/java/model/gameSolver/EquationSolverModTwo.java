@@ -1,8 +1,13 @@
-package model;
+package model.gameSolver;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+/**
+ * Solves a system of equation where each coefficient is in Z_2
+ *
+ **/
 
 public class EquationSolverModTwo {
 
@@ -20,6 +25,11 @@ public class EquationSolverModTwo {
         }
     };
 
+    /**
+     * Requires: the augmented matrix of the system to solve
+     *           the target vector is the last column in the matrix
+     * Ensures: a fully reduced augmented matrix
+     * */
     public List<List<Integer>> solveSystem(List<List<Integer>> augMatrix) {
         List<List<Integer>> mCopy = copyMatrix(augMatrix);
         mCopy.sort(comp);

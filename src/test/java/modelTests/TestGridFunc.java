@@ -1,6 +1,6 @@
 package modelTests;
 
-import model.staticHelpers.GenTestGrid;
+import testhelpers.GenGrid;
 import model.GridFunc;
 import model.Point2D;
 import org.junit.jupiter.api.Assertions;
@@ -17,8 +17,8 @@ public class TestGridFunc {
 
     @BeforeEach
     public void init(){
-        grid2 = GenTestGrid.genGrid(2);
-        grid3 = GenTestGrid.genGrid(3);
+        grid2 = GenGrid.genGrid(2);
+        grid3 = GenGrid.genGrid(3);
     }
 
     @Test

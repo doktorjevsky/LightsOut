@@ -1,6 +1,6 @@
-package model;
+package model.gameSolver;
 
-import model.staticHelpers.AdjacencyMatrixFactory;
+import model.Point2D;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.List;
 public class LightsOutSolver {
 
     private final EquationSolverModTwo solver = new EquationSolverModTwo();
+    private final AdjacencyMatrixFactory factory = new AdjacencyMatrixFactory();
 
     /**
      * Requires: the grid m has been modified by a GridFunc of reach "reach"
@@ -23,7 +24,7 @@ public class LightsOutSolver {
      * */
 
     public List<Point2D> solveGrid(List<List<Integer>> m, int reach){
-        List<List<Integer>> augM = AdjacencyMatrixFactory.getAdjacencyMatrix(m.size(), reach);
+        List<List<Integer>> augM = factory.getAdjacencyMatrix(m.size(), reach);
         for (int i = 0; i < m.size() * m.size(); i++){
             augM.get(i).add(m.get(i / m.size()).get(i % m.size()));
         }

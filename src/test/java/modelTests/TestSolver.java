@@ -1,7 +1,7 @@
 package modelTests;
 
 import model.GridModel;
-import model.LightsOutSolver;
+import model.gameSolver.LightsOutSolver;
 import model.Point2D;
 import model.staticHelpers.RandomModelFactory;
 import org.junit.jupiter.api.Assertions;

@@ -1,6 +1,6 @@
 package modelTests;
 
-import model.staticHelpers.GenTestGrid;
+import testhelpers.GenGrid;
 import model.GridModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ public class TestGridModel {
 
     @BeforeEach
     public void init(){
-        grid2 = new GridModel(2, GenTestGrid.genGrid(2));
+        grid2 = new GridModel(2, GenGrid.genGrid(2));
     }
 
     @Test

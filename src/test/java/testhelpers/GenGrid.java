@@ -1,9 +1,9 @@
-package model.staticHelpers;
+package testhelpers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenTestGrid {
+public class GenGrid {
 
     public static List<List<Integer>> genGrid(int size){
         List<List<Integer>> grid = new ArrayList<>();
