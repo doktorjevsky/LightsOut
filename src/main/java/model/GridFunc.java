@@ -62,7 +62,6 @@ public class GridFunc {
         return apply(grid, new Point2D(x, y));
     }
 
-
     private boolean inBounds(List<List<Integer>> grid, Point2D p){
         return 0 <= p.getX() && p.getX() < grid.get(0).size() && 0 <= p.getY() && p.getY() < grid.size();
     }
